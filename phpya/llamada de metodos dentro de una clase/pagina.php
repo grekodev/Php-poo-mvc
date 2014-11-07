@@ -13,11 +13,73 @@
  * */
 class Tabla
 {
-    private $filas;
-    private $columnas;
+    private $cantfilas;
+    private $cantcolumnas;
+    private $mat=array();
+
+    public function __construct($fi, $co)
+    {
+        $this->cantfilas=$fi;
+        $this->cantcolumnas=$co;
+    }
+    public function cargar($fila, $columnas,$valor)
+    {
+        $this->mat[$fila][$columnas]=$valor;
+
+
+    }
+
+    public function inicioTabla()
+    {
+        echo '<table border="1">';
+    }
+
+    public function inicioFila()
+    {
+        echo '<tr>';
+    }
+    public function mostrar($fi,$co)
+    {
+        echo '<td>'.$this->mat[$fi][$co].'</td>';
+    }
+
+    public function finFila()
+    {
+        echo '</tr>';
+    }
+
+    public function finTabla()
+    {
+        echo '</table>';
+    }
+
+    public function graficar()
+    {
+        $this->inicioTabla();
+        for($f=1 ; $f<=$this->cantfilas; $f++)
+        {
+            $this->inicioFila();
+            for($c=1 ; $c<=$this->cantcolumnas; $c++)
+            {
+                $this->mostrar($f,$c);
+            }
+            $this->finFila();
+        }
+        $this->finTabla();
+    }
 
 
 }
+
+$tabla1=new Tabla(2,3);
+$tabla1->cargar(1,1,"1");
+$tabla1->cargar(1,2,"2");
+$tabla1->cargar(1,3,"9");
+$tabla1->cargar(2,1,"4");
+$tabla1->cargar(2,2,"5");
+$tabla1->cargar(2,3,"6");
+$tabla1->graficar();
+
 
 
 ?>
